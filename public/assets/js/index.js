@@ -7,6 +7,7 @@
 - clicking the save button moves note to the left column
 - clicking on an existing note populates the note in the right column
 - clicking on the write icon in the nav presents empty fields to enter a new note title and text */
+const shortid = require('shortid');
 
 let noteTitle;
 let noteText;
@@ -85,6 +86,14 @@ const handleNoteSave = () => {
     getAndRenderNotes();
     renderActiveNote();
   });
+  newNote.insert({
+    _id: shortid.generate()
+  });
+};
+
+function findById(id, notes) {
+  const result = notes.filter((notes) => notes.id === id)[0];
+  return result;
 };
 
 // Delete the clicked note
