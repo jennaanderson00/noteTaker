@@ -1,3 +1,13 @@
+/* CRITERIA
+- write and save notes
+- landing page with link to notes page
+- existing notes are listed in left-hand column
+- right hand column contains empty fields to enter a new note title and text
+- a save icon appears in the nav when entering a new note title and text
+- clicking the save button moves note to the left column
+- clicking on an existing note populates the note in the right column
+- clicking on the write icon in the nav presents empty fields to enter a new note title and text */
+
 let noteTitle;
 let noteText;
 let saveNoteBtn;
