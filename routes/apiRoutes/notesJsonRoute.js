@@ -1,0 +1,1 @@
+// reads db.json and returns all saved notes as json

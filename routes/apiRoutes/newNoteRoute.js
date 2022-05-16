@@ -1,0 +1,1 @@
+// recieves new note from client, adds to db.json, returns new note to client
