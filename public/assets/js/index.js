@@ -1,14 +1,3 @@
-/* CRITERIA
-- write and save notes
-- landing page with link to notes page
-- existing notes are listed in left-hand column
-- right hand column contains empty fields to enter a new note title and text
-- a save icon appears in the nav when entering a new note title and text
-- clicking the save button moves note to the left column
-- clicking on an existing note populates the note in the right column
-- clicking on the write icon in the nav presents empty fields to enter a new note title and text */
-const shortid = require('shortid');
-
 let noteTitle;
 let noteText;
 let saveNoteBtn;
@@ -86,14 +75,6 @@ const handleNoteSave = () => {
     getAndRenderNotes();
     renderActiveNote();
   });
-  newNote.insert({
-    _id: shortid.generate()
-  });
-};
-
-function findById(id, notes) {
-  const result = notes.filter((notes) => notes.id === id)[0];
-  return result;
 };
 
 // Delete the clicked note
@@ -200,5 +181,3 @@ if (window.location.pathname === '/notes') {
 }
 
 getAndRenderNotes();
-
-module.exports = { findById, handleNoteSave };
