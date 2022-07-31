@@ -3,25 +3,17 @@ const path = require('path');
 const router = require('express').Router();
 const dbpath = path.join(__dirname, '../../db/db.json');
 
-var notesArray = [];
-
 router.get('/notes', (req, res) => {
     res.sendFile(dbpath);
 });
 
 router.post('/notes', (req, res) => {
-    let newNote = {
-        title: req.body.title,
-        text: req.body.text,
-        id: JSON.stringify(notesArray.length)
-    };
-    notesArray.push(newNote);
-    content = JSON.stringify(notesArray);
-    fs.writeFile(dbpath, content, function(err) {
-        if (err) throw err;
-        console.log('Note added.');
-    });
-    res.json(dbpath);
+    let newNote = req.body;
+    let notes = JSON.parse(fs.readFileSync('./db/db.json'));
+    notes.push(newNote);
+    fs.writeFileSync('./db/db.json', JSON.stringify(notes));
+    res.json(notes);
+    console.log('Note added.');
 });
 
 module.exports = router;
