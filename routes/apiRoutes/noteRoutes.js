@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const router = require('express').Router();
+const shortid = require('shortid');
 const dbpath = path.join(__dirname, '../../db/db.json');
 
 router.get('/notes', (req, res) => {
@@ -8,7 +9,12 @@ router.get('/notes', (req, res) => {
 });
 
 router.post('/notes', (req, res) => {
-    let newNote = req.body;
+    const noteId = shortid.generate();
+    let newNote = {
+        title: req.body.title,
+        text: req.body.text,
+        id: noteId
+    }
     let notes = JSON.parse(fs.readFileSync('./db/db.json'));
     notes.push(newNote);
     fs.writeFileSync('./db/db.json', JSON.stringify(notes));
